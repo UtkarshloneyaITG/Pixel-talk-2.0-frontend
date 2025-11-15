@@ -10,12 +10,15 @@ import ChatCanvas from "./ChatCanvas";
 import getLocation from "../services/UserLocation";
 
 function ChatWindow() {
-  const { opneCanvas } = useMsgFunctions();
+  const { opneCanvas, msg_sending, set_msg_sending } = useMsgFunctions();
   const [messages, setMessages] = useState([]);
   const chatLogs = useRef(null);
   const isAtBottom = useRef(true);
+<<<<<<< HEAD
 
   getLocation();
+=======
+>>>>>>> 9216fb97f3a3c2427bea6f005c374285afef54a4
   // ✅ Scroll listener to detect if user is at bottom
   useEffect(() => {
     const el = chatLogs.current;
@@ -24,7 +27,7 @@ function ChatWindow() {
     const handleScroll = () => {
       // user is at bottom if within 10px
       isAtBottom.current =
-        el.scrollHeight - el.scrollTop <= el.clientHeight + 50;
+        el.scrollHeight - el.scrollTop <= el.clientHeight + 20;
     };
 
     el.addEventListener("scroll", handleScroll);
@@ -53,7 +56,7 @@ function ChatWindow() {
         icon: pixel_talk,
       });
     }
-  }, [messages]);
+  }, [messages, msg_sending]);
 
   // ✅ Handle socket messages
   useEffect(() => {
@@ -66,6 +69,7 @@ function ChatWindow() {
             m.userID === msg.userID
         );
         if (exists) return prev;
+        set_msg_sending({ send: false, content: null });
         return [...prev, msg];
       });
     };
@@ -113,6 +117,36 @@ function ChatWindow() {
                   id={value._id}
                 />
               )
+            )}
+            {msg_sending.send && (
+              <div className="flex gap-2 items-center">
+                <div
+                  className="ChatSendTo-- text-white ml-auto"
+                  style={{ padding: "10px 18px", opacity: 1 }}
+                >
+                  {" "}
+                  {msg_sending.content.image ? (
+                    <div
+                      style={{
+                        width: "300px",
+                        height: "300px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <div className="loader"></div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  <div>{msg_sending.content.msg}</div>
+                </div>
+
+                <div className="flex gap-6">
+                  <span className="loader-2"></span>
+                </div>
+              </div>
             )}
           </div>
         </div>

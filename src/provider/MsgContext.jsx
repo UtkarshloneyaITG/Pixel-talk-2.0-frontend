@@ -16,11 +16,16 @@ export const MsgContextProvider = ({ children }) => {
   const [image, setimage] = useState(null);
   const [send, setsend] = useState({ msg: "", userID: "2", image: null });
   const [isThemeOpen, setIsThemeOpen] = useState(false);
+  const [msg_sending, set_msg_sending] = useState({
+    send: false,
+    content: null,
+  });
   const [selectedTheme, setSelectedTheme] = useState(
     localStorage.getItem("theme") || null
   );
   const sendMessage = () => {
     if (send.msg.trim() !== "" || image != null) {
+      set_msg_sending({ send: true, content: send });
       socket.emit("chat-message", send);
       setimage(null);
       setsend({ msg: "", userID: "", image: null });
@@ -77,7 +82,6 @@ export const MsgContextProvider = ({ children }) => {
     setIsThemeOpen(false);
   };
 
-
   return (
     <MsgContext.Provider
       value={{
@@ -95,6 +99,8 @@ export const MsgContextProvider = ({ children }) => {
         setIsThemeOpen,
         opneCanvas,
         setOpenCanvas,
+        msg_sending,
+        set_msg_sending,
       }}
     >
       {children}

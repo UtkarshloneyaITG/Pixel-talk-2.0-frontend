@@ -67,7 +67,6 @@ function SendTo({ text, image, id }) {
     return () => window.removeEventListener("keydown", handleEsc);
   }, []);
 
-  // --- Close menu when clicking outside ---
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -78,9 +77,7 @@ function SendTo({ text, image, id }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // --- Right click handler ---
   const handleRightClick = (e) => {
-   
     e.preventDefault();
     e.stopPropagation();
     setMenuPos({ x: e.clientX, y: e.clientY });
