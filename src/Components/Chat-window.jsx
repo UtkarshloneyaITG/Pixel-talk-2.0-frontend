@@ -46,7 +46,7 @@ function ChatWindow() {
     if (
       document.hidden &&
       Notification.permission === "granted" &&
-      lastMsg.userID !== "Gamith"
+      lastMsg.userID !== "Parth"
     ) {
       new Notification("New Message", {
         body: `${lastMsg.userID}: ${lastMsg.msg}`,
@@ -95,7 +95,7 @@ function ChatWindow() {
   }, []);
   useState(() => {
     socket.on("user-typing", ({ userID, typing }) => {
-      if (userID == "Gamith") return { typing: false };
+      if (userID == "Parth") return { typing: false };
       setUserTyping({ userID, typing });
       console.log(userTyping);
     });
@@ -114,7 +114,7 @@ function ChatWindow() {
             ref={chatLogs}
           >
             {messages.map((value, index) =>
-              value.userID !== "Gamith" ? (
+              value.userID !== "Parth" ? (
                 <SendBy
                   text={value.msg}
                   date={value.date}
