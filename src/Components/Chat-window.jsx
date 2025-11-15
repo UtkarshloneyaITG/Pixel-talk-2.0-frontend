@@ -10,10 +10,12 @@ import ChatCanvas from "./ChatCanvas";
 import getLocation from "../services/UserLocation";
 
 function ChatWindow() {
-  const { opneCanvas, msg_sending, set_msg_sending } = useMsgFunctions();
+  const { opneCanvas, msg_sending, set_msg_sending, send } = useMsgFunctions();
   const [messages, setMessages] = useState([]);
   const chatLogs = useRef(null);
   const isAtBottom = useRef(true);
+  const [userTyping, setUserTyping] = useState({ typing: false });
+
   // ✅ Scroll listener to detect if user is at bottom
   useEffect(() => {
     const el = chatLogs.current;
@@ -44,14 +46,14 @@ function ChatWindow() {
     if (
       document.hidden &&
       Notification.permission === "granted" &&
-      lastMsg.userID !== "Shadow"
+      lastMsg.userID !== "Parth"
     ) {
       new Notification("New Message", {
         body: `${lastMsg.userID}: ${lastMsg.msg}`,
         icon: pixel_talk,
       });
     }
-  }, [messages, msg_sending]);
+  }, [messages, msg_sending, send]);
 
   // ✅ Handle socket messages
   useEffect(() => {
@@ -91,7 +93,17 @@ function ChatWindow() {
       socket.off("delete-message", handleDelete);
     };
   }, []);
-
+  useState(() => {
+    socket.on("user-typing", ({ userID, typing }) => {
+      console.log(userID);
+      setUserTyping({ userID, typing });
+      console.log(userTyping);
+    });
+    return socket.off("user-typing", (e) => {
+      console.log("asfasdf");
+      setUserTyping(e);
+    });
+  }, []);
   return (
     <>
       <div className="relative flex flex-col flex-1 px-10 pb-5 chat-window justify-end">
@@ -102,7 +114,7 @@ function ChatWindow() {
             ref={chatLogs}
           >
             {messages.map((value, index) =>
-              value.userID !== "Shadow" ? (
+              value.userID !== "Parth" ? (
                 <SendBy
                   text={value.msg}
                   date={value.date}
@@ -122,6 +134,24 @@ function ChatWindow() {
                   id={value._id}
                 />
               )
+            )}
+            {userTyping.typing ? (
+              <div
+                className="ChatSendBy--"
+                style={{
+                  padding: "10px 18px",
+                  borderRadius: "20px",
+                  display: "inline-block",
+                  color: "white",
+                  fontSize: "16px",
+                  transformOrigin: "bottom left",
+                }}
+              >
+                <p>{userTyping.userID}</p>
+                <p className="loader-typing"></p>
+              </div>
+            ) : (
+              ""
             )}
             {msg_sending
               ? msg_sending.map((val, index) => {

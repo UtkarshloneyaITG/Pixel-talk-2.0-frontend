@@ -8,6 +8,7 @@ function SendTo({ text, image, id }) {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const [menuPos, setMenuPos] = useState({ x: 0, y: 0 });
+
   const menuRef = useRef(null);
 
   useGSAP(() => {
@@ -99,6 +100,8 @@ function SendTo({ text, image, id }) {
     const urlPattern = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)(\/[\w-./?%&=]*)?$/i;
     return urlPattern.test(text.trim());
   }
+
+
   return (
     <>
       <div
@@ -130,6 +133,7 @@ function SendTo({ text, image, id }) {
           text
         )}
       </div>
+
       {menuVisible && (
         <ul
           ref={menuRef}

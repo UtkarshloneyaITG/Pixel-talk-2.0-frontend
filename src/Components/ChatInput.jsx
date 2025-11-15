@@ -18,7 +18,7 @@ function ChatInput() {
     setsend((prev) => ({
       ...prev,
       msg: (prev.msg += emojiData.emoji),
-      userID: "Shadow",
+      userID: "Parth",
     }));
     setShowPicker(false);
   };
@@ -41,12 +41,12 @@ function ChatInput() {
       });
     }
   }, [showPicker]);
-  const sendTypingPlaceholder = (e) => {
-    if (e.target.value.trim().length > 0) {
-      return socket.emit("user-typing", { uesrID: "Shadow", typing: true });
-    }
-    return socket.emit("user-typing", { userID: "Shadow", typing: false });
-  }
+
+  useEffect(() => {
+    if (send.msg.trim().length > 0) {
+      socket.emit("user-typing", { userID: "Parth", typing: true });
+    } else socket.emit("user-typing", { userID: "Parth", typing: false });
+  }, [send]);
   return (
     <>
       <div className="flex">
@@ -137,8 +137,7 @@ function ChatInput() {
             placeholder="Message"
             className="msg-input pl-4"
             onInput={(e) => {
-              setsend({ msg: e.target.value, userID: "Shadow", image: image });
-              sendTypingPlaceholder(e);
+              setsend({ msg: e.target.value, userID: "Parth", image: image });
             }}
             value={send.msg}
           />
@@ -258,7 +257,7 @@ function ChatInput() {
           className="h-0 w-0"
           onChange={(e) => {
             setimage(e.target.files[0]);
-            setsend({ msg: "", userID: "Shadow", image: e.target.files[0] });
+            setsend({ msg: "", userID: "Parth", image: e.target.files[0] });
           }}
         />
       </div>
