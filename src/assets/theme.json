@@ -1,0 +1,19 @@
+{
+    "Fonts": {
+        "title-font": {
+            "file": "title-font",
+            "status": "active",
+            "notes": "Custom title font used in headings and gradient text"
+        }
+    },
+    "backgroundColor_dark": {
+        "bg-zinc-800": "#27272A",
+        "bg-zinc-900": "#18181B"
+    },
+    "title-text-color": {
+        "color_1": "linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)"
+    },
+    "btn-primary-theme":{
+        "color":"linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);"
+    }
+}

@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+:root {
+    /* 🎨 Color Palette */
+    --color-bg-dark: #0b0b0b;
+    --color-bg-card: #1e1e1e;
+    --color-border: #3f3f3f;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #aaaaaa;
+    --color-input-bg: #111111;
+    --color-placeholder: #a9a9a9;
+
+    /* 🌈 Gradients */
+     --gradient-instagram: linear-gradient(to right,
+      #833ab4, #fd1d1d, #fcb045);
+
+    /* ✨ Shadows */
+    --shadow-card: 0px 0px 10px rgba(255, 255, 255, 0.3);
+    --shadow-glow: 0px 0px 8px 3px rgba(255, 255, 255, 0.4);
+
+    /* 🔤 Fonts */
+    --font-title: "title-font", cursive;
+    --font-body: "Inter", sans-serif;
+
+    /* 🧭 Sizing */
+    --radius-card: 1.5rem;
+    --radius-input: 1rem;
+    --radius-button: 1rem;
+    --transition-fast: 0.3s;
+}
+
+@font-face {
+    font-family: "title-font";
+    src: url("../assets/font/BeautyMountainsPersonalUse-od7z.ttf");
+}
+
+/* ============================= */
+/* 🎯 Global Styles */
+/* ============================= */
+
+body {
+    background-color: var(--color-bg-dark);
+    font-family: var(--font-body);
+    color: var(--color-text-primary);
+    margin: 0;
+    padding: 0;
+}
+
+/* Gradient Title */
+.gradient-text {
+    background: var(--gradient-instagram);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: var(--font-title);
+}
+
+/* Signup Box */
+.signup-box {
+    background-color: var(--color-bg-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-glow);
+    transition: all var(--transition-fast) ease;
+}
+
+/* Inputs */
+.signup-inputs input {
+    background-color: var(--color-input-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-input);
+    color: var(--color-text-primary);
+    transition: all var(--transition-fast) ease;
+    width: 320px;
+}
+
+.signup-inputs input::placeholder {
+    color: var(--color-placeholder);
+}
+
+.signup-inputs input:focus {
+    transform: scale(1.05);
+    background-color: #2a2a2a;
+}
+
+/* Glowing Button */
+.glow-on-hover {
+    padding: 12px 35px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: var(--radius-button);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(6px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: var(--radius-button);
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: var(--radius-button);
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+
+line {
+  stroke: #3f51b5;
+  stroke-width: 5;
+}

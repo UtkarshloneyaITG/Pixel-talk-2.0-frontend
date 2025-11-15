@@ -1,0 +1,57 @@
+@import "tailwindcss";
+#color-picker div {
+  width: 1px;
+  height: 1px;
+  padding: 10px;
+  border-radius: 100px;
+}
+
+#board {
+  border-radius: 10px;
+}
+
+#color-picker {
+  display: flex;
+  max-width: 300px;
+  gap: 10px;
+  overflow: auto;
+}
+
+#color-picker::-webkit-scrollbar {
+  width: 2px;
+  /* Width of the vertical scrollbar */
+  height: 2px;
+
+  /* Height of the horizontal scrollbar */
+}
+
+#color-picker::-webkit-scrollbar-track {
+  background: #f1f1f1;
+
+  border-radius: 5px;
+}
+
+#color-picker::-webkit-scrollbar-thumb {
+  background: rgb(92, 91, 91);
+
+  border-radius: 5px;
+}
+
+#color-picker::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  /* Color on hover */
+}
+
+.color-picker-user {
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+}
+
+.addColor-button {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  border-radius: 20px;
+  text-align: center;
+}

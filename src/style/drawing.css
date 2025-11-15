@@ -1,0 +1,69 @@
+.color-plate {
+  position: absolute;
+  bottom: 100px;
+  z-index: 10;
+  left: 36.6%;
+}
+
+.colorPlate-btn {
+  transform: rotate(270deg);
+  position: absolute;
+  bottom: 90px;
+  left: 47%;
+  opacity: 0.7;
+  bottom: 53px;
+  left: 48%;
+  opacity: 0.4;
+  cursor: pointer;
+  mix-blend-mode: difference;
+}
+
+.Canvas-button {
+  transition: all .4s;
+}
+
+.Canvas-button:hover {
+  box-shadow: 0px 0px 3px 2px rgba(255, 255, 255, 0.685);
+}
+
+
+
+input[type="range"] {
+  -webkit-appearance: none;
+  /* For WebKit browsers (Chrome, Safari, Edge) */
+  appearance: none;
+  /* Standard property */
+  width: 100%;
+  /* Or a specific width */
+  background: transparent;
+  /* Clear default background */
+  cursor: pointer;
+  outline: none;
+  /* Remove outline on focus */
+}
+
+/* Track */
+input[type="range"]::-webkit-slider-runnable-track {
+  background: #1f1f1f;
+  /* Example background color */
+  height: 8px;
+  /* Example height */
+  border-radius: 4px;
+  /* Rounded corners */
+}
+
+/* Thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #0a0a0a7e;
+  border: 1px solid white;
+  /* Example background color */
+  width: 16px;
+  /* Example width */
+  height: 16px;
+  /* Example height */
+  border-radius: 50%;
+  /* Make it circular */
+  margin-top: -4px;
+  /* Adjust vertical position */
+}
