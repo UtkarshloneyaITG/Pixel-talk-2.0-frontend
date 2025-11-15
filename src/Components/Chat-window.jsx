@@ -7,6 +7,7 @@ import ChatAppHeader from "./ChatAppHeader";
 import { useMsgFunctions } from "../provider/MsgContext";
 import pixel_talk from "../assets/svg/Pixel Talk(full).png";
 import ChatCanvas from "./ChatCanvas";
+import getLocation from "../services/UserLocation";
 
 function ChatWindow() {
   const { opneCanvas } = useMsgFunctions();
@@ -14,6 +15,7 @@ function ChatWindow() {
   const chatLogs = useRef(null);
   const isAtBottom = useRef(true);
 
+  getLocation();
   // ✅ Scroll listener to detect if user is at bottom
   useEffect(() => {
     const el = chatLogs.current;
