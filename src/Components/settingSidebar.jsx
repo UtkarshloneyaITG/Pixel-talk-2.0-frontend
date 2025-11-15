@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import ThemeSelection from "./ThemeSelection";
-import { useMsgFunctions } from "../provider/msgContext";
+import { useMsgFunctions } from "../provider/MsgContext";
 
 function Sidebar({ isOpen, closeSidebar }) {
   const sidebarRef = useRef(null);

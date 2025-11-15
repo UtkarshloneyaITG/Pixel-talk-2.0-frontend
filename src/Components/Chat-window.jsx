@@ -4,7 +4,7 @@ import ChatInput from "./ChatInput";
 import { useRef, useState, useEffect } from "react";
 import { socket } from "../services/socket";
 import ChatAppHeader from "./ChatAppHeader";
-import { useMsgFunctions } from "../provider/msgContext";
+import { useMsgFunctions } from "../provider/MsgContext";
 import pixel_talk from "../assets/svg/Pixel Talk(full).png";
 import ChatCanvas from "./ChatCanvas";
 

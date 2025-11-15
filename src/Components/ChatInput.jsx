@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { useMsgFunctions } from "../provider/msgContext";
+import { useMsgFunctions } from "../provider/MsgContext";
 import EmojiPicker from "emoji-picker-react";
 import "../style/chatPage.css";
 import logo_of_img from "../assets/svg/image-square-svgrepo-com.svg";

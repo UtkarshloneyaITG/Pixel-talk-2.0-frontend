@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useMsgFunctions } from "../provider/msgContext";
+import { useMsgFunctions } from "../provider/MsgContext";
 
 const ThemeSelection = ({ onClose }) => {
   const {selectedTheme , setSelectedTheme, themes, handleApply , handleCancel} = useMsgFunctions()
