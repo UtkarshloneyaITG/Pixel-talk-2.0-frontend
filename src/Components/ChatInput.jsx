@@ -18,7 +18,7 @@ function ChatInput() {
     setsend((prev) => ({
       ...prev,
       msg: (prev.msg += emojiData.emoji),
-      userID: "Parth",
+      userID: "Gamith",
     }));
     setShowPicker(false);
   };
@@ -44,8 +44,8 @@ function ChatInput() {
 
   useEffect(() => {
     if (send.msg.trim().length > 0) {
-      socket.emit("user-typing", { userID: "Parth", typing: true });
-    } else socket.emit("user-typing", { userID: "Parth", typing: false });
+      socket.emit("user-typing", { userID: "Gamith", typing: true });
+    } else socket.emit("user-typing", { userID: "Gamith", typing: false });
   }, [send]);
   return (
     <>
@@ -137,7 +137,7 @@ function ChatInput() {
             placeholder="Message"
             className="msg-input pl-4"
             onInput={(e) => {
-              setsend({ msg: e.target.value, userID: "Parth", image: image });
+              setsend({ msg: e.target.value, userID: "Gamith", image: image });
             }}
             value={send.msg}
           />
@@ -257,7 +257,7 @@ function ChatInput() {
           className="h-0 w-0"
           onChange={(e) => {
             setimage(e.target.files[0]);
-            setsend({ msg: "", userID: "Parth", image: e.target.files[0] });
+            setsend({ msg: "", userID: "Gamith", image: e.target.files[0] });
           }}
         />
       </div>

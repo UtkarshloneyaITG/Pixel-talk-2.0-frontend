@@ -46,7 +46,7 @@ function ChatWindow() {
     if (
       document.hidden &&
       Notification.permission === "granted" &&
-      lastMsg.userID !== "Parth"
+      lastMsg.userID !== "Gamith"
     ) {
       new Notification("New Message", {
         body: `${lastMsg.userID}: ${lastMsg.msg}`,
@@ -114,7 +114,7 @@ function ChatWindow() {
             ref={chatLogs}
           >
             {messages.map((value, index) =>
-              value.userID !== "Parth" ? (
+              value.userID !== "Gamith" ? (
                 <SendBy
                   text={value.msg}
                   date={value.date}
@@ -137,18 +137,21 @@ function ChatWindow() {
             )}
             {userTyping.typing ? (
               <div
-                className="ChatSendBy--"
+                className="ChatSendBy-- typingplaceholder"
                 style={{
                   padding: "10px 18px",
                   borderRadius: "20px",
                   display: "inline-block",
-                  color: "white",
+                  color: "gray",
                   fontSize: "16px",
                   transformOrigin: "bottom left",
+                  display: "flex",
+                  gap: "5px",
+                  border: "2px solid gray",
                 }}
               >
-                <p>{userTyping.userID}</p>
-                <p className="loader-typing"></p>
+                <p>{userTyping.userID} typing </p>
+                <p className="loader-typing w-fit"></p>
               </div>
             ) : (
               ""
