@@ -44,7 +44,7 @@ function ChatWindow() {
     if (
       document.hidden &&
       Notification.permission === "granted" &&
-      lastMsg.userID !== "Gamith"
+      lastMsg.userID !== "Shadow"
     ) {
       new Notification("New Message", {
         body: `${lastMsg.userID}: ${lastMsg.msg}`,
@@ -102,7 +102,7 @@ function ChatWindow() {
             ref={chatLogs}
           >
             {messages.map((value, index) =>
-              value.userID !== "Gamith" ? (
+              value.userID !== "Shadow" ? (
                 <SendBy
                   text={value.msg}
                   date={value.date}
