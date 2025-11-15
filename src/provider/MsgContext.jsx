@@ -58,7 +58,7 @@ export const MsgContextProvider = ({ children }) => {
 
   const handleApply = () => {
     localStorage.setItem("theme", selectedTheme);
-
+    setIsThemeOpen(false);
     const chatBody = document.querySelector(".chat-body");
     if (chatBody && selectedTheme) {
       chatBody.style.backgroundSize = "cover";
@@ -77,7 +77,7 @@ export const MsgContextProvider = ({ children }) => {
     setIsThemeOpen(false);
   };
 
-  
+
   return (
     <MsgContext.Provider
       value={{

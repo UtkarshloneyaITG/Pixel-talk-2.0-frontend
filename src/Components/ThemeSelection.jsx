@@ -7,7 +7,7 @@ const ThemeSelection = ({ onClose }) => {
 
   
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-50 animate-fadeIn">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-52 animate-fadeIn">
       <div className="theme-box bg-zinc-800 rounded-2xl shadow-2xl p-8 w-[90%] max-w-4xl relative">
         <h2 className="theme-heading text-4xl font-bold mb-8 text-center bg-linear-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
           Choose a Theme
