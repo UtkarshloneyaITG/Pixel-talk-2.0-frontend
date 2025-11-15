@@ -8,6 +8,7 @@ function SendBy({ text, image, id }) {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const [menuPos, setMenuPos] = useState({ x: 0, y: 0 });
+  const [userTyping, setUserTyping] = useState(null);
   const menuRef = useRef(null);
 
   useGSAP(() => {
@@ -79,6 +80,14 @@ function SendBy({ text, image, id }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useState(() => {
+    const handleUserTping = (e) => {
+      setUserTyping(e.typing);
+    };
+    socket.on("user-typing", handleUserTping);
+    return socket.off("user-typing", handleUserTping);
+  });
+
   // --- Right click handler ---
   let message_TO_perform_action = null;
   const handleRightClick = (e) => {
@@ -141,6 +150,23 @@ function SendBy({ text, image, id }) {
           text
         )}
       </div>
+      {userTyping ? (
+        <div
+          className="ChatSendBy--"
+          style={{
+            padding: "10px 18px",
+            borderRadius: "20px",
+            display: "inline-block",
+            color: "white",
+            fontSize: "16px",
+            transformOrigin: "bottom left",
+          }}
+        >
+          <span className="loader-typing"></span>
+        </div>
+      ) : (
+        ""
+      )}
       {menuVisible && (
         <ul
           ref={menuRef}

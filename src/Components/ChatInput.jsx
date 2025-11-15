@@ -1,9 +1,10 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { useMsgFunctions } from "../provider/MsgContext";
 import EmojiPicker from "emoji-picker-react";
 import "../style/chatPage.css";
 import logo_of_img from "../assets/svg/image-square-svgrepo-com.svg";
 import gsap from "gsap";
+import { socket } from "../services/socket";
 
 function ChatInput() {
   const fileinput = useRef();
@@ -40,7 +41,12 @@ function ChatInput() {
       });
     }
   }, [showPicker]);
-
+  const sendTypingPlaceholder = useCallback((e) => {
+    if (e.target.value.trim().length > 0) {
+      socket.emit("user-typing", { uesrID: "gamith", typing: true });
+    }
+    socket.emit("user-typing", { userID: "gamith", typing: false });
+  });
   return (
     <>
       <div className="flex">
