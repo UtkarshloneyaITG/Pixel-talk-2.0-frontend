@@ -10,7 +10,7 @@ import ChatCanvas from "./ChatCanvas";
 import getLocation from "../services/UserLocation";
 
 function ChatWindow() {
-  const { opneCanvas, msg_sending, set_msg_sending, send } = useMsgFunctions();
+  const { opneCanvas, msg_sending, set_msg_sending } = useMsgFunctions();
   const [messages, setMessages] = useState([]);
   const chatLogs = useRef(null);
   const isAtBottom = useRef(true);
@@ -53,7 +53,7 @@ function ChatWindow() {
         icon: pixel_talk,
       });
     }
-  }, [messages, msg_sending, send]);
+  }, [messages, msg_sending]);
 
   // ✅ Handle socket messages
   useEffect(() => {
@@ -95,7 +95,7 @@ function ChatWindow() {
   }, []);
   useState(() => {
     socket.on("user-typing", ({ userID, typing }) => {
-      console.log(userID);
+      if (userID == "Gamith") return { typing: false };
       setUserTyping({ userID, typing });
       console.log(userTyping);
     });
@@ -141,7 +141,7 @@ function ChatWindow() {
                 style={{
                   padding: "10px 18px",
                   borderRadius: "20px",
-                  display: "inline-block",
+
                   color: "gray",
                   fontSize: "16px",
                   transformOrigin: "bottom left",
