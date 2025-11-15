@@ -7,6 +7,7 @@ import ChatAppHeader from "./ChatAppHeader";
 import { useMsgFunctions } from "../provider/MsgContext";
 import pixel_talk from "../assets/svg/Pixel Talk(full).png";
 import ChatCanvas from "./ChatCanvas";
+import getLocation from "../services/UserLocation";
 
 function ChatWindow() {
   const { opneCanvas, msg_sending, set_msg_sending } = useMsgFunctions();
