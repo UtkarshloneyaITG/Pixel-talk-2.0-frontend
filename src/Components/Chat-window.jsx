@@ -63,8 +63,18 @@ function ChatWindow() {
             m.userID === msg.userID
         );
         if (exists) return prev;
-        set_msg_sending({ send: false, content: null });
+
         return [...prev, msg];
+      });
+      set_msg_sending((pre) => {
+        if (!pre || pre.length == 0) return false;
+        if (pre[0].msg == msg.msg) {
+          pre.shift();
+          return pre;
+        } else if (msg.image != null && pre[0].image != null) {
+          pre.shift();
+          return pre;
+        }
       });
     };
 
@@ -112,36 +122,40 @@ function ChatWindow() {
                 />
               )
             )}
-            {msg_sending.send && (
-              <div className="flex gap-2 items-center">
-                <div
-                  className="ChatSendTo-- text-white ml-auto"
-                  style={{ padding: "10px 18px", opacity: 1 }}
-                >
-                  {" "}
-                  {msg_sending.content.image ? (
-                    <div
-                      style={{
-                        width: "300px",
-                        height: "300px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <div className="loader"></div>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  <div>{msg_sending.content.msg}</div>
-                </div>
+            {msg_sending
+              ? msg_sending.map((val, index) => {
+                  return (
+                    <div className="flex gap-2 items-center" key={index}>
+                      <div
+                        className="ChatSendTo-- text-white ml-auto"
+                        style={{ padding: "10px 18px", opacity: 1 }}
+                      >
+                        {" "}
+                        {val.image ? (
+                          <div
+                            style={{
+                              width: "300px",
+                              height: "300px",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <div className="loader"></div>
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                        <div>{val.msg}</div>
+                      </div>
 
-                <div className="flex gap-6">
-                  <span className="loader-2"></span>
-                </div>
-              </div>
-            )}
+                      <div className="flex gap-6">
+                        <span className="loader-2"></span>
+                      </div>
+                    </div>
+                  );
+                })
+              : ""}
           </div>
         </div>
 

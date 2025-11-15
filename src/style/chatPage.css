@@ -182,11 +182,6 @@
     .chat-list {
         display: none;
     }
-
-    .msg-box {
-        width: 85%;
-    }
-
     .chat-window {
         background: var(--color-zinc-950);
         padding: 0px;
